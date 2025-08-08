@@ -1,0 +1,31 @@
+version: 1
+default_environment: dev
+project_id: 5954b88a-a0a2-4add-8883-071929451605
+environments:
+- name: dev
+- name: staging
+- name: prod
+plugins:
+  extractors:
+  - name: tap-rest-api-msdk
+    variant: widen
+    pip_url: tap-rest-api-msdk
+    config:
+      api_url: https://jsonplaceholder.typicode.com
+      streams:
+      - name: users
+        path: /users
+        primary_keys: [id]
+
+
+  loaders:
+  - name: target-postgres
+    variant: meltanolabs
+    pip_url: meltanolabs-target-postgres
+    config:
+      host: ${TARGET_POSTGRES_HOST}
+      port: ${TARGET_POSTGRES_PORT}
+      user: ${TARGET_POSTGRES_USER}
+      password: ${TARGET_POSTGRES_PASSWORD}
+      database: ${TARGET_POSTGRES_DATABASE}
+
