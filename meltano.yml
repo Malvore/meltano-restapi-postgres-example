@@ -13,8 +13,8 @@ plugins:
     config:
       api_url: https://jsonplaceholder.typicode.com
       streams:
-      - name: users
-        path: /users
+      - name: albums
+        path: /albums
         primary_keys: [id]
 
 
